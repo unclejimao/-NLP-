@@ -1,4 +1,4 @@
-# **jieba_demo.py:**
+# jieba_demo.py:
 C:\Users\HY\anaconda\envs\tensorflow\python.exe D:/Users/HY/NLP_Learning_TianshanSoft/jieba/jieba_demo.py
 
 jieba分词全模式：
@@ -20,7 +20,7 @@ Search engine mode: 小明，硕士，毕业，于，中国，科学，学院，
 分词后的结果seg_list本质是： <generator object Tokenizer.cut_for_search at 0x000001D54F08D468>
 seg_list 数据类型： <class 'generator'>
 
-# **pos_seg.py:**
+# pos_seg.py:
 C:\Users\HY\anaconda\envs\tensorflow\python.exe D:/Users/HY/NLP_Learning_TianshanSoft/jieba/pos_seg.py
 4月24日，期待已久的《复仇者联盟4》终于在各大院线上映跟观众见面
 
