@@ -29,15 +29,16 @@
 这些二进制文件相当于缓存，避免了每次加载去读取多个文件。
 通过这种txt和bin结合的方式，HanLP一方面方便用户编辑查看词典，另一方面bin方便加载，这种方式可谓是兼二者之长，设计上堪称典范。
 ### 建立自定义词典步骤
+
 1. 打开hanlp的data目录data\dictionary\custom，删除所有的.txt.bin文件，这样一来，HanLP下次加载词典时会自动构建.txt.bin，这样一来，你对文本文件所做的更改才会生效。
     - 对于HanLP中的字典，**每次更改之后，都必须重新生成bin才可以**，否则不会生效。
 2. 在该路径下添加自己的词典文件例如 mine.txt
 3. 更改hanlp.properties配置，在properties文件里的CustomDictionaryPath下面添加mine.txt.
 
-
-     自定义词典路径，用;隔开多个自定义词典，空格开头表示在同一个目录，使用“文件名 词性”形式则表示这个词典的词性默认是该词性。优先级递减。
-     另外data/dictionary/custom/CustomDictionary.txt是个高质量的词库，请不要删除
-     CustomDictionaryPath=data/dictionary/custom/mine.txt; CustomDictionary.txt; 现代汉语补充词库.txt; 全国地名大全.txt ns; 人名词典.txt; 机构名词典.txt; 上海地名.txt ns;data/dictionary/person/nrf.txt nrf
+        自定义词典路径，用;隔开多个自定义词典，空格开头表示在同一个目录，使用“文件名 词性”形式则表示这个词典的词性默认是该词性。优先级递减。
+        另外data/dictionary/custom/CustomDictionary.txt是个高质量的词库，请不要删除
+        CustomDictionaryPath=data/dictionary/custom/mine.txt; CustomDictionary.txt; 现代汉语补充词库.txt; 全国地名大全.txt ns; 人名词典.txt; 机构名词典.txt; 上海地名.txt ns;data/dictionary/person/nrf.txt nrf
+     
 ## sort_dict_by_lenth.py
 该程序对已有的用户词典（Hanlp词典格式）按照词条长度排序
 
