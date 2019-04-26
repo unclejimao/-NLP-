@@ -1,10 +1,12 @@
 # Hanlp_demo.py输出结果
+
 C:\Users\HY\anaconda\envs\tensorflow\python.exe D:/Users/HY/NLP_Learning_TianshanSoft/Hanlp/Hanlp_demo.py
 ==============================HanLP分词==============================
 [你好/vl, ，/w, 欢迎/v, 在/p, Python/nx, 中/f, 调用/v, HanLP/nx, 的/ude1, API/nx]
 ----------------------------------------------------------------------
 ==============================标准分词==============================
 [你好/vl, ，/w, 欢迎/v, 在/p, Python/nx, 中/f, 调用/v, HanLP/nx, 的/ude1, API/nx]
+标准分词输出类型： <class 'jpype._jclass.java.util.ArrayList'>
 ----------------------------------------------------------------------
 ==============================NLP分词==============================
 [中国科学院计算技术研究所/nt, 的/u, 宗/q, 成庆/vn, 教授/n, 正在/d, 教授/v, 自然语言处理/nz, 课程/n]
@@ -36,8 +38,8 @@ C:\Users\HY\anaconda\envs\tensorflow\python.exe D:/Users/HY/NLP_Learning_Tiansha
 ==============================短语提取==============================
 [算法工程师, 算法处理, 一维信息, 算法研究, 信号处理, 信息算法, 通信物理层, 处理算法, 视频算法, 互联网搜索算法]
 ----------------------------------------------------------------------
-JVM has been shutdown
 
-程序运行时间共 1.77 s
+程序运行时间共 3.42 s
+JVM has been shutdown
 
 Process finished with exit code 0
