@@ -15,7 +15,9 @@ print("-" * 70)
 
 print("=" * 30 + "标准分词" + "=" * 30)
 StandardTokenizer = JClass('com.hankcs.hanlp.tokenizer.StandardTokenizer')
-print(StandardTokenizer.segment('你好，欢迎在Python中调用HanLP的API'))
+cut_result = StandardTokenizer.segment('你好，欢迎在Python中调用HanLP的API')
+print(cut_result)
+print("标准分词输出类型：", type(cut_result))
 print("-" * 70)
 
 # NLP分词NLPTokenizer会执行全部命名实体识别和词性标注
