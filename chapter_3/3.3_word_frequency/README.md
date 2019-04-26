@@ -35,9 +35,9 @@
 3. 更改hanlp.properties配置，在properties文件里的CustomDictionaryPath下面添加mine.txt.
 
 
-     自定义词典路径，用;隔开多个自定义词典，空格开头表示在同一个目录，使用“文件名 词性”形式则表示这个词典的词性默认是该词性。优先级递减。
-     另外data/dictionary/custom/CustomDictionary.txt是个高质量的词库，请不要删除
-     CustomDictionaryPath=data/dictionary/custom/mine.txt; CustomDictionary.txt; 现代汉语补充词库.txt; 全国地名大全.txt ns; 人名词典.txt; 机构名词典.txt; 上海地名.txt ns;data/dictionary/person/nrf.txt nrf
+      自定义词典路径，用;隔开多个自定义词典，空格开头表示在同一个目录，使用“文件名 词性”形式则表示这个词典的词性默认是该词性。优先级递减。
+      另外data/dictionary/custom/CustomDictionary.txt是个高质量的词库，请不要删除
+      CustomDictionaryPath=data/dictionary/custom/mine.txt; CustomDictionary.txt; 现代汉语补充词库.txt; 全国地名大全.txt ns; 人名词典.txt; 机构名词典.txt; 上海地名.txt ns;data/dictionary/person/nrf.txt nrf
 ## sort_dict_by_lenth.py
 该程序对已有的用户词典（Hanlp词典格式）按照词条长度排序
 
