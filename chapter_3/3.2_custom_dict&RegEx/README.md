@@ -9,11 +9,5 @@ jieba分词用户词典
 ## tokenizer.py
 Hanlp分词结果处理程序，将原本Hanlp分词结果（一个<class 'jpype._jclass.java.util.ArrayList'>对象）转换成str
 
-**注意:**
-
-chapter_3中所有需要
-
-     from tokenizer import *
-的地方都是从本文件import的，故不再将本文件copy至每个小节文件夹下。
 ## regex.md
 正则匹配相关参考资料以及对主程序中所用到的正则匹配的解释。
