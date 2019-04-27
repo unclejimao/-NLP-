@@ -16,6 +16,7 @@ keep_pos_v = "v,vd,vg,vf,vl,vshi,vyou,vx,vi"
 keep_pos_v = set(keep_pos_v.split(","))
 keep_pos_p = set(['p', 'pbei', 'pba'])
 
+# 设置丢弃集，里面包含了想丢弃词的词性
 drop_pos_set = set(
     ['xu', 'xx', 'y', 'yg', 'wh', 'wky', 'wkz', 'wp', 'ws', 'wyy', 'wyz', 'wb', 'u', 'ud', 'ude1', 'ude2', 'ude3',
      'udeng', 'udh', 'p', 'rr', 'w'])
@@ -25,17 +26,19 @@ HanLP = JClass('com.hankcs.hanlp.HanLP')
 
 def to_string(sentence, return_generator=False):
     if return_generator:
-        return (word_pos_item.toString().split('/') for word_pos_item in Tokenizer.segment(sentence))
+        return (word_pos_item.toString().split('/') for word_pos_item in Tokenizer.segment(sentence))  # 以生成器类型返回分词结果
     else:
         return [(word_pos_item.toString().split('/')[0], word_pos_item.toString().split('/')[1]) for word_pos_item in
-                Tokenizer.segment(sentence)]
+                Tokenizer.segment(sentence)]  # 返回list类型结果：[词语，词性]
 
 
 def seg_sentences(sentence, with_filter=True, return_generator=False):
     segs = to_string(sentence, return_generator=return_generator)
     if with_filter:
         g = [word_pos_pair[0] for word_pos_pair in segs if
-             len(word_pos_pair) == 2 and word_pos_pair[0] != ' ' and word_pos_pair[1] not in drop_pos_set]
+             len(word_pos_pair) == 2 and word_pos_pair[0] != ' ' and word_pos_pair[
+                 1] not in drop_pos_set]  # 将词性处于丢弃集中的词语丢弃，否则作为结果返回
     else:
-        g = [word_pos_pair[0] for word_pos_pair in segs if len(word_pos_pair) == 2 and word_pos_pair[0] != ' ']
+        g = [word_pos_pair[0] for word_pos_pair in segs if
+             len(word_pos_pair) == 2 and word_pos_pair[0] != ' ']  # 不过滤，直接返回不为空的词语
     return iter(g) if return_generator else g
