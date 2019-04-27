@@ -5,6 +5,9 @@
 
 # 项目结构说明
 
+## Reference_specification
+该文件夹下包含了两个汉语语料库基本加工规范，可以作为平时处理中文的工作标准参考
+
 ## jieba
 该文件夹包含了jieba分词的使用示例和输出结果
 ## Stanford_NLP
