@@ -3,7 +3,8 @@
 
 课程地址 https://www.bilibili.com/video/av46158465
 
-#项目结构说明
+# 项目结构说明
+
 ## jieba
 该文件夹包含了jieba分词的使用示例和输出结果
 ## Stanford_NLP
