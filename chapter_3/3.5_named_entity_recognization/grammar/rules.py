@@ -66,4 +66,4 @@ def grammar_parse(raw_sentence=None, file_object=None):
                                          indent=4,
                                          separators=None,
                                          default=None,
-                                         sort_keys=False))
+                                         sort_keys=False) + '\n')
