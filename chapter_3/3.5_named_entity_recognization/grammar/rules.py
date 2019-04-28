@@ -23,11 +23,11 @@ def get_stanford_ner_nodes(parent):
         return {}
 
 
-def grammer_parse(raw_sentence=None, file_object=None):
-    # assert grammer_type in set(['hanlp_keep','stanford_ner_drop','stanford_pos_drop'])
+def grammar_parse(raw_sentence=None, file_object=None):
+    # assert grammar_type in set(['hanlp_keep','stanford_ner_drop','stanford_pos_drop'])
     if len(raw_sentence.strip()) < 1:
         return False
-    grammer_dict = \
+    grammar_dict = \
         {
             'stanford_ner_drop': r"""
             DATE:{<DATE>+<MISC>?<DATE>*<0>{2}}
@@ -39,7 +39,7 @@ def grammer_parse(raw_sentence=None, file_object=None):
             """
         }
 
-    stanford_ner_drop_rp = nltk.RegexpParser(grammer_dict['stanford_ner_drop'])
+    stanford_ner_drop_rp = nltk.RegexpParser(grammar_dict['stanford_ner_drop'])
     try:
         stanford_ner_drop_result = stanford_ner_drop_rp.parse(ner_stanford(raw_sentence))
     except:
