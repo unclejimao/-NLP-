@@ -7,12 +7,15 @@ from .tools import ner_stanford, cut_stanford
 
 def get_stanford_ner_nodes(parent):
     date = ''
+    num = ''
     org = ''
     loc = ''
     for node in parent:
         if type(node) is nltk.Tree:
             if node.label() == 'DATE':
                 date = date + ' ' + ''.join([i[0] for i in node])
+            elif node.label() == 'NUMBER':
+                num = num + ' ' + ''.join([i[0] for i in node])
             elif node.label() == 'ORGANIZATION':
                 org = org + ' ' + ''.join([i[0] for i in node])
             elif node.label() == 'LOCATION':
