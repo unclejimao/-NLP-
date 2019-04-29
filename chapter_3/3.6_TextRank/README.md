@@ -53,7 +53,7 @@ defaultdict接受一个工厂函数作为参数，如下来构造：
     输出： 
     defaultdict(<function zero at 0x000001754EB4B488>, {'bbb': 0})
 ### dict.items()
-
+以列表返回可遍历的(键, 值) 元组数组，返回对象是数组
 ### sorted()
 Python内置的sorted()函数可以对list进行排序：
 
