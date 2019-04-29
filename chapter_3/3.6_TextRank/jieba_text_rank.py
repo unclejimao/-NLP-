@@ -11,7 +11,6 @@ import jieba.posseg
 from .tfidf import KeywordExtractor
 from .._compat import *
 
-
 class UndirectWeightGraph:
     '''
     定义无向有权图类，包含一个graph属性和两个方法：
@@ -103,3 +102,15 @@ class UndirectWeightGraph:
             ws[n] = (w - min_rank / 10) / (max_rank - min_rank / 10)  # 对每个结点的rank值进行归一化处理
 
         return ws
+
+
+class TextRank(KeywordExtractor):
+
+    def __init__(self):
+        pass
+
+    def pairfilter(self, wp):
+        pass
+
+    def textrank(self, sentence, topK=20, withWeight=False, allowPOS=('ns', 'n', 'vn', 'v'), withFlag=False):
+        pass
