@@ -1,6 +1,22 @@
 # TextRank算法解释
 ## jieba_text_rank.py
 该文件详细分析了jieba内置的TextRank算法的代码，具体解读见注释，由于该算法依赖jieba外层文件，故此文件非执行文件，在pycharm中会提示 variable unresolved
+## text_rank.py
+该文件为本小节课程的运行代码，使用jieba提供的TextRank算法实现文本的关键词抽取。
+## 运行结果
+
+    C:\Users\HY\anaconda\envs\tensorflow\python.exe D:/Users/HY/NLP_Learning_TianshanSoft/chapter_3/3.6_TextRank/text_rank.py
+
+    keywords by textrank:
+    Building prefix dict from the default dictionary ...
+    Dumping model to file cache C:\Users\HY\AppData\Local\Temp\jieba.cache
+    Loading model cost 0.736 seconds.
+    Prefix dict has been built succesfully.
+    线程 进程 单位 基本 调度 分派 局部变量 堆栈 资源 程序执行
+
+
+    Process finished with exit code 0
+
 ## operator.itemgetter函数
 operator模块提供的itemgetter函数用于获取对象的哪些维的数据，参数为一些序号。看下面的例子
 
