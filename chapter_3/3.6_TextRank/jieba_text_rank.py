@@ -55,16 +55,20 @@ class UndirectWeightGraph:
         '''
 
     def rank(self):
+        '''
+        textrank值计算方法，根据TextRank算法计算graph中各个结点的rank值
+        :return: 返回的是一个字典，key为图结点，value为rank值
+        '''
         ws = defaultdict(float)  # 结点权重dict：key为各个结点，valve为各个结点rank值
         outSum = defaultdict(float)  # 结点出边权重之和dict：key为各个结点，value为每个结点出边权重之和
 
-        wsdef = 1.0 / (len(self.graph) or 1.0)  # 初始化各个结点rank值均为 图中边数分之一
+        wsdef = 1.0 / (len(self.graph) or 1.0)  # 初始化各个结点rank值为 图中边数分之一
 
         for n, out in self.graph.items():  # 遍历图中的结点，初始化各结点rank值和出边权重和
             ws[n] = wsdef
             outSum[n] = sum((e[2] for e in out), 0.0)
         '''
-        经过for循环后，得到了两个dict，其中ws包含了各个结点及其rank值，outSum包含了各个结点及其出边权重之和
+        经过for循环后，得到了两个dict，其中ws包含了各个结点及其初始rank值，outSum包含了各个结点及其出边权重之和
         对于上述例子中的graph：
         ws={
             'a':0.25,
@@ -85,8 +89,8 @@ class UndirectWeightGraph:
         for x in xrange(10):  # 遍历10次。xrange()在Python3中已经没有了，可以直接使用range()
             for n in sorted_keys:  # 对于每一个结点，根据TextRank算法公式计算其rank值
                 s = 0
-                for e in self.graph[
-                    n]:  # self.graph[n]的value是一个list，里面存了结点n的所有出边。公式中是计算结点n所有入边对结点权值贡献的加和，由于是无向图，入边就是出边，所以此处没有问题。
+                # self.graph[n]的value是一个list，里面存了结点n的所有出边。公式中是计算结点n所有入边对结点权值贡献的加和，由于是无向图，入边就是出边，所以此处没有问题。
+                for e in self.graph[n]:
                     s += e[2] / outSum[e[1]] * ws[e[1]]  # 此处+=计算的就是公式中最外层的加和符号（计算结点n所有入边的权值贡献）
                 ws[n] = (1 - self.d) + self.d * s  # 最后根据公式计算得到结点n的rank值
 
@@ -125,7 +129,7 @@ class TextRank(KeywordExtractor):
         :param allowPOS:    接受的关键词词性列表
         :param withFlag:    if True：返回一个二元组的列表，列表元素为（word，flag）
                             if False：返回一个词列表
-        :return:
+        :return:返回的是一个列表，根据参数设定，可以带权重或者不带权重
         '''
 
         self.pos_filt = frozenset(allowPOS)  # 词性过滤集合
