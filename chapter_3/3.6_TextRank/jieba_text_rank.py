@@ -82,7 +82,7 @@ class UndirectWeightGraph:
 
         # this line for build stable iteration
         sorted_keys = sorted(self.graph.keys())  # 取出graph中的key（即结点）并排好序
-        for x in range(10):  # 遍历10次
+        for x in xrange(10):  # 遍历10次。xrange()在Python3中已经没有了，可以直接使用range()
             for n in sorted_keys:  # 对于每一个结点，根据TextRank算法公式计算其rank值
                 s = 0
                 for e in self.graph[
@@ -92,7 +92,7 @@ class UndirectWeightGraph:
 
         (min_rank, max_rank) = (sys.float_info[0], sys.float_info[3])
 
-        for w in itervalues(ws):  # 获取最小和最大rank值
+        for w in itervalues(ws):  # 获取最小和最大rank值。在Python3中，itervalues()被values()代替，后者可以直接返回可迭代对象
             if w < min_rank:
                 min_rank = w
             if w > max_rank:
@@ -107,10 +107,31 @@ class UndirectWeightGraph:
 class TextRank(KeywordExtractor):
 
     def __init__(self):
-        pass
+        self.tokenizer = self.postokenizer = jieba.posseg.dt
+        self.stop_words = self.STOP_WORDS.copy()
+        self.pos_filt = frozenset(('ns', 'n', 'vn', 'v'))
+        self.span = 5
 
     def pairfilter(self, wp):
-        pass
+        return (wp.flag in self.pos_filt and len(wp.word.strip()) >= 2 and wp.word.lower() not in self.stop_words)
 
     def textrank(self, sentence, topK=20, withWeight=False, allowPOS=('ns', 'n', 'vn', 'v'), withFlag=False):
-        pass
+        '''
+        用TextRank算法从句子中抽取关键词
+        :param sentence: 待抽取句子
+        :param topK: 返回关机键词数量，topK=None时返回所有可能关键词
+        :param withWeight:  if True：返回一个二元组的列表，列表元素为（word，weight）
+                            if False：返回词列表
+        :param allowPOS:    接受的关键词词性列表
+        :param withFlag:    if True：返回一个二元组的列表，列表元素为（word，flag）
+                            if False：返回一个词列表
+        :return:
+        '''
+
+        self.pos_filt = frozenset(allowPOS)  # 词性过滤集合
+        g = UndirectWeightGraph()  # 定义无向有权图
+        cm = defaultdict(int)  # 定义共现词典，默认value为int默认值0
+        words = tuple(self.tokenizer.cut(sentence))  # 将分词结果存为元组
+
+        for i, wp in enumerate(words):  # 依次遍历每个词，i为词，wp为其词性
+            if self.pairfilter(wp):  # 如果词i的词性wp满足过滤条件
