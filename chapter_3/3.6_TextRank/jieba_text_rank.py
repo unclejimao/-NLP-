@@ -133,5 +133,30 @@ class TextRank(KeywordExtractor):
         cm = defaultdict(int)  # 定义共现词典，默认value为int默认值0
         words = tuple(self.tokenizer.cut(sentence))  # 将分词结果存为元组
 
-        for i, wp in enumerate(words):  # 依次遍历每个词，i为词，wp为其词性
-            if self.pairfilter(wp):  # 如果词i的词性wp满足过滤条件
+        for i, wp in enumerate(words):  # 依次遍历每个词，i为索引，wp为其词和词性list[word,flag]
+            if self.pairfilter(wp):  # 如果词wp.word的词性wp.flag满足过滤条件
+                for j in xrange(i + 1, i + self.span):  # 依次遍历wp.word之后span大小窗口的词
+                    if j >= len(words):  # 窗口中的词的索引号最大为句子分词后的数量
+                        break
+                    if not self.pairfilter(words[j]):  # 如果索引号为j的词不满足过滤条件，遍历下一个
+                        continue
+                    # 执行到这一步说明索引为j的词满足过滤要求，故将索引为i和j的词加入共现词典，value为该词对共现次数
+                    if allowPOS and withFlag:  # 如果参数要求带标记，则把元组对([word1,flag1],[word2,flag2])作为key
+                        cm[(wp, words[j])] += 1
+                    else:
+                        cm[(wp.word, words[j].word)] += 1  # 否则将元组对(word1,word2)作为key
+
+        for terms, w in cm.items():  # cm.items()={(word1,word2):共现次数}
+            g.addEdge(terms[0], terms[1], w)  # 依次遍历共现词典中的每个元素，将索引为i和j的词作为边的端点、词对共现次数作为权值构建无向有权图
+
+        nodes_rank = g.rank()  # 运行TextRank算法计算每个词（结点）的rank值，nodes_rank是一个词典
+
+        if withWeight:
+            tags = sorted(nodes_rank.items(), key=itemgetter(1), reverse=True)
+        else:
+            tags = sorted(nodes_rank, key=nodes_rank.__getitem__, reverse=True)
+
+        if topK:
+            return tags[:topK]
+        else:
+            return tags
