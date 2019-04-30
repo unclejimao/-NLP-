@@ -1,6 +1,49 @@
 # TextRank算法解释
 ## jieba_text_rank.py
 该文件详细分析了jieba内置的TextRank算法的代码，具体解读见注释，由于该算法依赖jieba外层文件，故此文件非执行文件，在pycharm中会提示 variable unresolved
+## operator.itemgetter函数
+operator模块提供的itemgetter函数用于获取对象的哪些维的数据，参数为一些序号。看下面的例子
+
+    a = [1,2,3] 
+    >>> b=operator.itemgetter(1)      //定义函数b，获取对象的第1个域的值
+    >>> b(a) 
+
+    2
+
+    >>> b=operator.itemgetter(1,0)  //定义函数b，获取对象的第1个域和第0个的值
+    >>> b(a) 
+    (2, 1)
+
+要注意，operator.itemgetter函数获取的不是值，而是定义了一个函数，通过该函数作用到对象上才能获取值。
+
+sorted函数用来排序，
+    
+    sorted(iterable[, cmp[, key[, reverse]]])
+
+其中key的参数为一个函数或者lambda函数。所以itemgetter可以用来当key的参数
+
+    a = [('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
+
+根据第二个域和第三个域进行排序
+
+    sorted(students, key=operator.itemgetter(1,2))
+    
+
+## from __future__ import unicode_literals
+在Python中有些库的接口要求参数必须是str类型字符串，有些接口要求参数必须是unicode类型字符串。
+
+对于str类型的字符串，调用len()和遍历时，其实都是以字节为单位的，这个太坑爹了，同一个字符使用不同的编码格式，长度往往是不同的。
+
+对unicode类型的字符串调用len()和遍历才是以字符为单位，这是我们所要的。
+
+另外，Django，Django REST framework的接口都是返回unicode类型的字符串。
+
+为了统一，建议使用
+
+    from __future__ import unicode_literals
+
+将模块中显式出现的所有字符串转为unicode类型，不过，对于必须使用str字符串的地方要加以注意。
+
 ## defaultdict类
 ### dict数据类型
 python中的dict是一个重要的数据类型，不同于其他由数字索引的序列，字典是用”键”（key）来索引的。通常表示为dict(key: val, …)，有以下特征：
@@ -128,6 +171,18 @@ dict类似的方法对还有 keys()&&iterkeys、items()&&iteritems()
 ，**他们的返回结果类似于集的可迭代对象，而不是键值对的列表。**从而在不进行键和值条目复制的情况下就能对其执行set操作。
 
 ## frozenset()
+frozenset() 返回一个冻结的集合，冻结后集合不能再添加或删除任何元素。
+
+frozenset() 函数语法：
+
+    class frozenset([iterable])
+    iterable – 可迭代的对象，比如列表、字典、元组等等
+    返回新的 frozenset 对象，如果不提供任何参数，默认会生成空集合。
+
+**与set()的区别：**
+- set无序排序且不重复，是可变的，有add（），remove（）等方法。既然是可变的，所以它不存在哈希值。基本功能包括关系测试和消除重复元素. 集合对象还支持union(联合), intersection(交集),difference(差集)和sysmmetric difference(对称差集)等数学运算。不支持索引、切片等序列操作，但仍支持成员关系运算符in-not in、推导式等操作。
+
+- frozenset是冻结的集合，它是不可变的，存在哈希值，好处是它可以作为字典的key，也可以作为其它集合的元素。缺点是一旦创建便不能更改，没有add，remove方法。
 ## tuple()
 Python 元组 tuple() 函数将列表转换为元组。 
 
