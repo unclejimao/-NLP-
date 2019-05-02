@@ -1,10 +1,9 @@
 # -*- encoding:utf-8 -*-
 # author: unclejimao
 
-from stanfordcorenlp import StanfordCoreNLP
-from nltk import Tree, ProbabilisticTree
-import nltk, re
+import nltk
 from nltk.chunk.regexp import *
+from stanfordcorenlp import StanfordCoreNLP
 
 nlp = StanfordCoreNLP(r'D:\Users\HY\stanfordnlp', lang='zh')
 

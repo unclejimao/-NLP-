@@ -2,7 +2,6 @@
 # author: unclejimao
 
 import nltk
-import nltk.tree as tree
 
 
 def get_vn_pair():
