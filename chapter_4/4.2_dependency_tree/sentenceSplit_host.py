@@ -99,3 +99,5 @@ if __name__ == '__main__':
             s = parse_sentence(it)
             res = search(s)
             print(res)
+            fout.write(res)
+            fout.write('\n')
