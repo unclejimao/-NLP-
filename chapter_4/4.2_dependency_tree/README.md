@@ -1,1 +1,11 @@
 # 依存句法树
+# span()
+# replace()
+# list.search()
+# tree.subtrees()
+# lambda
+# maketrans()
+# translate()
+# StanforCoreNLP.parse()
+# nltk.tree.formstring()
+# StanforCoreNLP.dependency_parse()
